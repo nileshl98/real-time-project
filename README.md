@@ -574,14 +574,13 @@ sudo systemctl status docker
 </tomcat-users>
 ```
 - Modify context.xml to Allow Remote Access ,Create (context.xml) file on Ansible In /opt/docker/  
-  ```sh
+```sh
   <Context antiResourceLocking="false" privileged="true">
     <!-- Allow access from any IP address -->
     <Valve className="org.apache.catalina.valves.RemoteAddrValve"
            allow=".*" />
 </Context>
 ```
-
 - We will create same Dockerfile under `docker` directory in Ansible host,you can create image and run container from this image in `ansible` server.
 ```sh
 FROM tomcat:latest
@@ -590,13 +589,11 @@ COPY ./*.war /usr/local/tomcat/webapps
 COPY tomcat-users.xml /usr/local/tomcat/conf/
 COPY context.xml /usr/local/tomcat/webapps/manager/META-INF/
 ```
-
 - try to build image for test purpose
 ```sh
 docker build -t regapp:v1 .
 docker run -t --name regapp-server -p 8081:8080 regapp:v1
 ```
-
 ### Step5: Ansible playbook to create image and container
 
 - We will create a simple playbook to create an image and container (In Ansible).
