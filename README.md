@@ -893,7 +893,7 @@ ansible -a uptime all
 
 ### Step3: Create Ansible playbooks for deployment and service manifest files
 
-- First we need to create our `kube_deploy.yml` playbook in ansible server.
+- First we need to create our `k8s.yml` playbook in ansible server.
 ```yaml
 ---
 - hosts: kubernetes
@@ -902,17 +902,9 @@ ansible -a uptime all
   tasks:
     - name: deploy regapp on kubernetes
       command: kubectl apply -f regapp-deployment.yml
-```
 
-- Next we will create our `kube_service.yml` playbook in ansible server.
-```yaml
----
-- hosts: kubernetes
-  user: root
-
-  tasks:
-  - name: deploy regapp on kubernetes
-    command: kubectl apply -f regapp-service.yml
+    - name: create loadbalancer service on kubernetes
+      command: kubectl apply -f regapp-service.yml
 ```
 
 - Since we are running these files as root user we need to copy ssh public key uder home directory of root user for ansible to control. For this action, It will ask root user password. we can easily configure a password for rrot with `passwd root` command in kubernetes bootstrap server.
@@ -922,8 +914,7 @@ ssh-copy-id root@<private_ip_of_kubernetes_bootstrap_server>
 
 - Now we are ready to run our playbooks:
 ```sh
-ansible-playbook -i hosts kube_deploy.yml
-ansible-playbook -i hosts kube_service.yml
+ansible-playbook -i hosts k8s.yml
 ```
 
 - We can check if our deployment is successful via ansible control node by running below command in K8s bootstrap server:
@@ -938,8 +929,7 @@ kubectl get deploy,svc
 Post-build Actions: Send over SSH
 server: ansiblehost
 Exec command:
-ansible-playbook -i /opt/docker/hosts /opt/docker/kube_deploy.yml;
-ansible-playbook -i /opt/docker/hosts /opt/docker/kube_service.yml
+ansible-playbook -i /opt/docker/hosts /opt/docker/k8s.yml
 ```
 - Before running the job, lets delete existing deployments in our K8s server. Then we can run our job.
 ```sh
@@ -947,40 +937,20 @@ kubectl delete deploy nilesh-regapp
 kubectl delete service nilesh-service
 ```
 
-- We can combine playbooks in one by adding `kube_service.yml` as a new task under `kube_deploy.yml`.
-```yaml
----
-- hosts: kubernetes
-  user: root
+### Step5: Now You Can Rename Your Jobs
 
-  tasks:
-    - name: deploy regapp on kubernetes
-      command: kubectl apply -f regapp-deployment.yml
-
-    - name: create loadbalancer service on kubernetes
-      command: kubectl apply -f regapp-service.yml
-```
-### Step5: CI Job to create Image for Kubernetes
-
-- Here we will just create a job named `RegApp_CI_Job` by using exieting job `CopyArtifactOntoDockercontainer`. Last time we renamed our playbook, we will just update that in Exec Command section(In Ansible)
-```yaml
-ansible-playbook /opt/docker/create_image_regapp.yml
+- Here we will just Renamed Deploy-On-Container to `RegApp_CI_Job`)
+```ssh
+Deploy-On-Container to `RegApp_CI_Job`
+Copy-Artifact-on-Ansible To `Regapp_CD_job`
 ```
 
-### Step6: Enable rolling update to create pod from latest docker image
-
-- To integrate our CI job with CD job, we will configure `PostBuild action` as `Build Other Projects`
-```yaml
-RegApp_CD_Job
-Initialize only when build is stable 
-```
-
-- We need to update one more thing in our `kube-deploy.yml` playbook. We need to specify the rollout whenever if new image is pushed to docker hub.
+- We need to update one more thing in our `k8s.yml` playbook. We need to specify the rollout whenever if new image is pushed to docker hub.
 ```yaml
   - name: update deployment with new pods if image updated in docker hub
     command: kubectl rollout restart deployment.apps/nilesh-regapp
 ```
-- We can make an update to `index.jsp` in our `hello-world project` under `hello-world/webapp/src/main/webapp/` directory and push our changes to Github. This will trigger both CI&CD jobs triggered successively. 
+- We can make an update to `index.jsp` in our `hello-world project` under `real-time-project/webapp/src/main/webapp/` directory and push our changes to Github. This will trigger both CI&CD jobs triggered successively. 
 
 - To delete cluster, run below command:
 ```sh
