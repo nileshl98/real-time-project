@@ -289,7 +289,7 @@ docker run -d --name tomcat-container-fixed -p 8085:8080 tomcat-fixed
 
 - We can check our Tomcat server in browser now.
 
-![app-v2](app-v2-deployed-to-tomcat.png)
+![app-v2](app-v2-deployed-to1-tomcat.png)
 ### Step4: Integrate Docker with Jenkins
 
 - We will create a new user/password called `dockeradmin` and add it to `docker` group
