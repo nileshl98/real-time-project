@@ -2,7 +2,7 @@
 
 *Project Source* : ![](https://www.udemy.com/share/1023P43@TzHtDv17OEytQAPjLwu3e4zLrmxgSAIF0MbMFfhEKzFw7b_BGV_d1gNXdAKXNPxs/)
   
-![Project-architecture](project.png)
+![Project-architecture](project1.png)
 ## CI/CD Pipeline using Git,Jenkins and Maven
 
 ### Step1: Configure Jenkins Server
@@ -205,7 +205,7 @@ Tomcat URL: http://<Public_IP_of_Tomcat_server>:8080/
 
 - `Save` and `Build` the job. When go to Tomcat server under `Manager App`, you will be able to see our application under `webapp/`
 
-![](app-v1-deployed-to-tomcat.png)
+![](app-v1-deployed-to-tomcat1.png)
 ### Step3: Automate Build and Deploy using Poll SCM
 
 - We can configure our job to be triggered with `Poll SCM` by scheduling a cron job. It will check the repository based on given schedule. If there is any change in repository, it will trigger job and deployed the new version of app to Tomcat server.
