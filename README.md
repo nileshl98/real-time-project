@@ -9,7 +9,7 @@
 
 - First we need to launch an EC2 instance with Keypair
 ```sh
-instanceType: c4.micro (4vcpu-8gb-ram)
+instanceType: c4.micro(4vcpu-8gb-ram)
 AMI: ubuntu
 Security Group: 
 22, SSH
