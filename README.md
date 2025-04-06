@@ -727,7 +727,27 @@ ansible-playbook /opt/docker/regapp-deploy.yml
 ## Kubernetes cluster on AWS using eksctl
 
 - First we will create an ec2-instance instance to use as EKSCTL bootstrap server.
-
+-   Lunch t2.micro, ubuntu
+```sh
+  curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+sudo apt install unzip
+unzip awscliv2.zip
+sudo ./aws/install -i /usr/local/aws-cli -b /usr/local/bin --update
+```
+- Create an IAM User:
+o Go to the AWS IAM console.
+o Create a new IAM user named "eks-admin."
+o Attach the "AdministratorAccess" policy to this user.
+2. Create Security Credentials:
+o After creating the user, generate an Access Key and Secret Access Key for this user.
+4) Launch AWS instance and get access to the instance
+5) Configure AWS CLI:
+6) Configure the AWS CLI with the Access Key and Secret Access Key from step 2:
+AMAZON ELASTIC KUBERNETES SERVICE (EKS) NOTES
+7) Kubernetes tools setup:
+```sh
+aws configure
+```
 - As per official documentation https://docs.aws.amazon.com/eks/latest/userguide/getting-started-eksctl.html, we need to install prerequisites shown below as root user:
 
 ```YAML
