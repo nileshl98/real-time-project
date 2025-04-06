@@ -729,12 +729,12 @@ ansible-playbook /opt/docker/regapp-deploy.yml
 - First we will create an ec2-instance instance to use as EKSCTL bootstrap server.
 -   Lunch t2.micro, ubuntu
 ```sh
-  curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+sudo curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 sudo apt install unzip
-unzip awscliv2.zip
+sudo unzip awscliv2.zip
 sudo ./aws/install -i /usr/local/aws-cli -b /usr/local/bin --update
 ```
-- Create an IAM User:
+- 1.Create an IAM User:
 o Go to the AWS IAM console.
 o Create a new IAM user named "eks-admin."
 o Attach the "AdministratorAccess" policy to this user.
