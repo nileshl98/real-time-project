@@ -429,7 +429,7 @@ sudo nano /etc/ssh/sshd_config
 
 - We need to uncomment/comment below lines in `sshd_config` file and save it
 ```sh
-PermitRootLogin prohibit-password
+PermitRootLogin yes
 KbdInteractiveAuthentication yes
 PasswordAuthentication yes
 #PasswordAuthentication no
@@ -482,7 +482,7 @@ ansadmin ALL=(ALL)       NOPASSWD: ALL
 ```
 - We need to uncomment/comment below lines in `sshd_config` file and save it
 ```sh
-PermitRootLogin prohibit-password
+PermitRootLogin yes
 KbdInteractiveAuthentication yes
 PasswordAuthentication yes
 #PasswordAuthentication no
@@ -875,8 +875,9 @@ ansadmin ALL=(ALL)       NOPASSWD: ALL
 ```
 - We need to uncomment/comment below lines in `sshd_config` file and save it
 ```sh
+PermitRootLogin yes
+KbdInteractiveAuthentication yes
 PasswordAuthentication yes
-#PasswordAuthentication no
 ```
 - We need to restart sshd service
 ```sh
