@@ -38,10 +38,6 @@ sudo systemctl status jenkins
 ```sh
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
-- We need to install git in our Jenkins server, run below command:
-```sh
-sudo yum install git
-```
 
 ### Step2: Integrate Git with Jenkins
 
@@ -62,9 +58,10 @@ Save -> Build Now
 
 ```sh
 cd /opt
-sudo wget https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.tar.gz
-tar -xvf apache-maven-3.9.9-bin.tar.gz
- mv apache-maven-3.9.9 maven
+wget https://dlcdn.apache.org/maven/maven-3/3.9.10/binaries/apache-maven-3.9.10-bin.tar.gz
+tar -xvzf apache-maven-3.9.10-bin.tar.gz
+ mv apache-maven-3.9.10 maven
+rm -rf apache-maven-3.9.10-bin.tar.gz
 ```
 
 - Next configure `M2_HOME` and `M2`(binary directory) environment variables and add them to the `PATH` so that we can run `maven` commands in any directory. You can search where is your JVM by using `find / -name java`
