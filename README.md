@@ -345,8 +345,8 @@ POLL SCM: * * * * *
 Build Goals: clean install
 Post build actions: Send build artifacts over ssh
 SSH server: dockerhost
-TransferSet: /var/lib/jenkins/workspace/deploy-on-container/webapp/target/*.war
-Remove prefix: /var/lib/jenkins/workspace/deploy-on-container/webapp/target
+TransferSet: webapp/target/*.war
+Remove prefix: webapp/target
 Remote directory://opt//docker                  (/home/dockeradmin)
 ```
 
