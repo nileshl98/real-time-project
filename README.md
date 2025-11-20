@@ -119,10 +119,10 @@ java -version
 
 ```sh
 cd /opt
-wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.33/bin/apache-tomcat-10.1.33.tar.gz
-tar -xvf apache-tomcat-10.1.33.tar.gz
-mv apache-tomcat-10.1.33 tomcat
-sudo rm -r apache-tomcat-10.1.33.tar.gz
+wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.49/bin/apache-tomcat-10.1.49.tar.gz
+tar -xvf apache-tomcat-10.1.49.tar.gz
+mv apache-tomcat-10.1.49 tomcat
+sudo rm -r apache-tomcat-10.1.49.tar.gz
 ```
 - Now we can start our Tomcat server
 
