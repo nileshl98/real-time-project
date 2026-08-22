@@ -85,7 +85,7 @@ export PATH=$JAVA_HOME/bin:$M2_HOME/bin:$PATH
 ```sh
 Name = FirstMavenProject
 Type: Maven Project
-URL: https://github.com/warkarjk/mvn-dynamic-web-app-template.git
+URL:  https://github.com/nileshlip/mvn-dynamic-web-app-template.git
 Root Pom: pom.xml
 Goals and options: clean install
 Save -> Build Now
@@ -191,7 +191,7 @@ pwd: deployer
 - Now we can create our next job with name of `BuildAndDeployJob`. After build step, the artifact will stored under `webapp/target/` directory as `webapp.war`.  
 ```sh
 Kind: Maven Project
-SCM: https://github.com/nileshlip/hello-world-Projects.git
+SCM:  https://github.com/nileshlip/mvn-dynamic-web-app-template.git
 Goal and options: clean install
 Post Build Actions: Deploy war/ear to a container
 WAR/EAR files: **/*.war
@@ -340,7 +340,7 @@ provide password
 ```sh
 Name: BuildAndDeployOnContainer
 Type: Maven Project
-SCM: https://github.com/nileshl98/real-time-project.git
+SCM:  https://github.com/nileshlip/mvn-dynamic-web-app-template.git
 POLL SCM: * * * * *
 Build Goals: clean install
 Post build actions: Send build artifacts over ssh
