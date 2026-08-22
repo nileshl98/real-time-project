@@ -22,14 +22,14 @@ Security Group:
 sudo apt update
 sudo apt upgrade -y
 sudo apt install fontconfig openjdk-17-jre -y
-java -version
-curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
-echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/" | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
+sudo apt install fontconfig openjdk-21-jre -y
+sudo wget -O /etc/apt/keyrings/jenkins-keyring.asc \
+  https://pkg.jenkins.io/debian-stable/jenkins.io-2026.key
+echo "deb [signed-by=/etc/apt/keyrings/jenkins-keyring.asc]" \
+  https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
 sudo apt update
 sudo apt install jenkins -y
-sudo systemctl start jenkins
-sudo systemctl enable jenkins
-sudo systemctl status jenkins
 
 ```
 
@@ -58,10 +58,10 @@ Save -> Build Now
 
 ```sh
 cd /opt
-wget https://dlcdn.apache.org/maven/maven-3/3.9.11/binaries/apache-maven-3.9.11-bin.tar.gz
-tar -xvzf apache-maven-3.9.11-bin.tar.gz
- mv apache-maven-3.9.11 maven
-rm -rf apache-maven-3.9.11-bin.tar.gz
+wget https://dlcdn.apache.org/maven/maven-3/3.9.16/binaries/apache-maven-3.9.16-bin.tar.gz
+tar -xvzf apache-maven-3.9.16-bin.tar.gz
+ mv apache-maven-3.9.16 maven
+rm -rf apache-maven-3.9.16-bin.tar.gz
 ```
 
 - Next configure `M2_HOME` and `M2`(binary directory) environment variables and add them to the `PATH` so that we can run `maven` commands in any directory. You can search where is your JVM by using `find / -name java`
@@ -85,7 +85,7 @@ export PATH=$JAVA_HOME/bin:$M2_HOME/bin:$PATH
 ```sh
 Name = FirstMavenProject
 Type: Maven Project
-URL: https://github.com/nileshl98/real-time-project.git
+URL: https://github.com/warkarjk/mvn-dynamic-web-app-template.git
 Root Pom: pom.xml
 Goals and options: clean install
 Save -> Build Now
@@ -119,10 +119,10 @@ java -version
 
 ```sh
 cd /opt
-wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.49/bin/apache-tomcat-10.1.49.tar.gz
-tar -xvf apache-tomcat-10.1.49.tar.gz
-mv apache-tomcat-10.1.49 tomcat
-sudo rm -r apache-tomcat-10.1.49.tar.gz
+wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.59/bin/apache-tomcat-10.1.59.tar.gz
+tar -xvf apache-tomcat-10.1.59.tar.gz
+mv apache-tomcat-10.1.59 tomcat
+sudo rm -r apache-tomcat-10.1.59.tar.gz
 ```
 - Now we can start our Tomcat server
 
@@ -155,7 +155,7 @@ cd tomcat/bin/
 - Now we updated the files, we will no longer get `403 Access Denied` error but it will ask username&password in Tomcat server. To find the credentials, go to under tomcat/conf directory
 ```sh
 cd tomcat/conf/
-vim tomcat-users.xml
+nano tomcat-users.xml
 ```
 
 - We will add below users  to the file, and save the file.
