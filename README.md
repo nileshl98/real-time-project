@@ -534,8 +534,8 @@ choose - Fingerprint Artifacts
 Post build actions: ansiblehost
 source - **/*.war
 Remote Directory - //opt//docker/
-exec command - cd /opt/docker/com.example.maven-project/webapp/1.0-SNAPSHOT;
-mv webapp-1.0-SNAPSHOT.war webapp.war;
+exec command - cd /opt/docker/com.demo/mvn-spring-mvc/0.0.1-SNAPSHOT;
+mv mvn-spring-mvc-0.0.1-SNAPSHOT.war webapp.war;
 mv webapp.war /opt/docker/
 ```
 - Go to ansible server, we need to create `/opt/docker` directory and give ownership to `ansadmin`
