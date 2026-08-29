@@ -768,8 +768,8 @@ eksctl version
 - Create cluster by using eksctl with below command:
 ```sh
 eksctl create cluster --name rd-cluster \
---region us-east-1 \
---node-type t2.small 
+--region ap-south-1 \
+--node-type t3.small 
 ```
 ```
 
