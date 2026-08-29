@@ -927,7 +927,10 @@ ansible -a uptime all
 
 - Since we are running these files as root user we need to copy ssh public key uder home directory of root user for ansible to control. For this action, It will ask root user password. we can easily configure a password for rrot with `passwd root` command in kubernetes bootstrap server.
 ```sh
-ssh-copy-id root@<private_ip_of_kubernetes_bootstrap_server>
+On Ansible
+cat /home/ansadmin/.ssh/id_ed25519.pub   (copy content from ansadmin and paste to k8s in nano ~ .ssh/authorized_keys
+
+
 ```
 
 - Now we are ready to run our playbooks:
